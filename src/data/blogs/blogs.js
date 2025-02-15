@@ -74,7 +74,7 @@ const blogPosts = [
       id: 3,
       title: "The Importance of Estate Planning",
       excerpt:
-        "Why estate planning is essential for protecting your assets and loved ones.",
+        "Why estate planning is essential for protecting your assets and loved ones see its importance.",
       author: "Emily Johnson",
       date: "September 28, 2023",
       image: "/blogs/1.jpg",

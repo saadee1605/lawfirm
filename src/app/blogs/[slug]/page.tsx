@@ -38,11 +38,14 @@ export default function Page() {
             {blog.date} - By {blog.author}
           </p>
           <div className="flex flex-col md:grid grid-cols-2 gap-4 border-t border-b mt-2 mb-2 ">
-            <img
-              src={blog.image}
-              alt={blog.title}
-              className="w-full rounded-xl my-4"
-            />
+            
+              {" "}
+              <img
+                src={blog.image}
+                alt={blog.title}
+                className="w-full h-[80%] rounded-xl my-4"
+              />
+            
             <p className="my-4">{blog.fullContent}</p>
           </div>
         </div>

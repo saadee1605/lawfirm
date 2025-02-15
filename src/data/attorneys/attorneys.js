@@ -13,7 +13,7 @@ const attorneys = [
       specialty: "Family Law",
       experience: "10 years",
       image: "attorneys/6.jpg",
-      bio: "Jane Smith specializes in divorce and child custody cases, ensuring fair settlements for families."
+      bio: "Jane Smith specializes in divorce and child custody cases, ensuring fair settlements."
     },
     {
       id: 3,
@@ -21,7 +21,7 @@ const attorneys = [
       specialty: "Corporate Law",
       experience: "12 years",
       image: "attorneys/7.jpg",
-      bio: "Robert Johnson provides legal guidance to businesses, helping them navigate corporate regulations."
+      bio: "Robert Johnson provides legal guidance to businesses, helping them navigate regulations."
     },
     {
       id: 4,
@@ -53,7 +53,7 @@ const attorneys = [
       specialty: "Employment Law",
       experience: "11 years",
       image: "attorneys/9.jpg",
-      bio: "David Martinez represents employees and employers in workplace disputes and discrimination cases."
+      bio: "David Martinez represents employers in workplace disputes and discrimination cases."
     },
     {
       id: 8,

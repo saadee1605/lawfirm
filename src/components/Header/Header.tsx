@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="header bg-transparent backdrop-blur-lg shadow-md border-b border-black fixed top-0 w-screen z-50">
+      <header className="header bg-transparent backdrop-blur-lg shadow-md  fixed top-0 w-screen z-50">
         <nav className="flex justify-between gap-2 p-2 px-5 items-center">
           {/* Logo Section */}
           <div className="flex space-x-2 items-center justify-center">
