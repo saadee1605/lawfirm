@@ -1,7 +1,22 @@
-import attorneys from "@/data/attorneys/attorneys";
+"use client";
 import Link from "next/link"; // ✅ Fix import
+import { useEffect, useState } from "react";
+import { getAttorneys } from "../../../actions/attorneys";
 
 export default function AttorneysPage() {
+
+  const [attorneys, setAttorneys] = useState<any[]>([]);
+
+  useEffect(()=>{
+    const fetch=async()=>{
+      const val= await getAttorneys();
+      setAttorneys(val);
+    }
+
+    fetch();
+
+  },[])
+
   return (
     <div className="attorney mt-16 md:mt-28 p-3">
       <div className="border-l p-3 space-y-5">
@@ -16,7 +31,7 @@ export default function AttorneysPage() {
 
       <div className="mt-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
         {attorneys.map((attorney) => (
-          <Link key={attorney.id} href={`/attorney/${attorney.id}`}>
+          <Link key={attorney.id} href={`/attorney/${attorney._id}`}>
             <div className="p-4 border rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow">
               <img
                 src={attorney.image}

@@ -39,7 +39,7 @@ export default function Header() {
             </Link>
 
             <div className="hidden md:flex justify-center items-center">
-              <Link href="/">
+              <Link href="/get-in-touch">
                 <Button size={"sm"}>Get in touch</Button>
               </Link>
             </div>

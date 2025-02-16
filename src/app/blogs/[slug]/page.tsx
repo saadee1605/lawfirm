@@ -2,6 +2,7 @@
 import blogPosts from "@/data/blogs/blogs";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getBlogsbyId } from "../../../../actions/blog";
 
 // Corrected Type Definition
 type Blog = {
@@ -19,14 +20,20 @@ type Blog = {
 
 export default function Page() {
   const params = useParams();
-  const slug = params?.slug as string;
+  const slug = params?.slug;
   const [blog, setBlog] = useState<Blog | null>(null);
 
-  useEffect(() => {
+  useEffect( () => {
     if (!slug) return;
 
-    const newBlog = blogPosts.find((blog) => blog.id === Number(slug));
-    setBlog(newBlog || null);
+    const fetch=async()=>{
+      console.log(slug);
+      const newBlog = await getBlogsbyId(slug);
+      console.log(newBlog);
+      
+      setBlog(newBlog || null);
+    }
+    fetch();
   }, [slug]);
 
   return (
@@ -46,7 +53,7 @@ export default function Page() {
                 className="w-full h-[80%] rounded-xl my-4"
               />
             
-            <p className="my-4">{blog.fullContent}</p>
+            <p className="my-4">{blog.FullContent}</p>
           </div>
         </div>
       ) : (

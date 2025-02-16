@@ -1,9 +1,35 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import blogPosts from '@/data/blogs/blogs'
+import { useEffect, useState } from "react";
+import { getBlogs } from "../../../actions/blog";
 
 export default function BlogsPage() {
+  type Blog = {
+    titlle: string;
+    excerpt: string;
+    date: string;
+    content: string;
+    category: string;
+    image: string;
+    FullContent: string;
+    tags: string[];
+  }
+  
+  const [blogs, setBlogs] = useState<any[]>([]);
+
+ 
+
+  useEffect( () => {
+    const fetching=async()=>{
+      const value=await getBlogs();
+      setBlogs(value);
+      console.log(value);
+      
+    }
+    fetching();
+  }, []);
+
   return (
     <div className="mt-20">
       <div className="hero p-4 bg-cover bg-center h-96 flex items-center justify-center text-white text-center">
@@ -20,8 +46,8 @@ export default function BlogsPage() {
 
       {/* Blog List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
-        {blogPosts.map((post) => (
-          <div key={post.id} className="bg-white p-6 rounded-lg shadow-lg ">
+        {blogs.map((post,index) => (
+          <div key={index} className="bg-white p-6 rounded-lg shadow-lg ">
             <img
               src={post.image}
               alt={post.title}
@@ -33,7 +59,7 @@ export default function BlogsPage() {
               <p className="text-sm text-gray-500">
                 {post.author} • {post.date}
               </p>
-              <Link href={`/blogs/${post.id}`} passHref>
+              <Link href={`/blogs/${post._id}`} passHref>
                 <Button>Read More</Button>
               </Link>
             </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import attorneys from "@/data/attorneys/attorneys";
 import cases from "@/data/cases/cases";
 import { Button } from "@/components/ui/button";
+import { getAttorneysbyId } from "../../../../actions/attorneys";
 
 type Attorney = {
   id: number;
@@ -32,10 +33,16 @@ export default function AttorneyPage() {
   const [data, setAttorneyData] = useState<Attorney | null>(null);
 
   useEffect(() => {
-    if (slug) {
-      const attorney = attorneys.find((att) => att.id === Number(slug));
+
+    const fetch = async () => {
+      if(slug)
+      {
+      const attorney = await getAttorneysbyId(slug);
       setAttorneyData(attorney || null);
-    }
+      }
+    };
+    fetch();
+
   }, [slug]);
 
   if (!data)
@@ -64,6 +71,7 @@ export default function AttorneyPage() {
           </p>
           <div className="space-y-4">
             {cases.map((c) => (
+              
               <div
                 key={c.id}
                 className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"

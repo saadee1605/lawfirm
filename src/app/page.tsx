@@ -3,12 +3,15 @@ import Hero from "@/components/Hero/Hero";
 import PracticeAreas from "@/app/practiceareas/page"; // Ensure the correct path
 import AboutUs from "@/app/about-us/page"; // Ensure the correct path
 import { useState, useEffect } from "react";
+import { createBlog } from "../../actions/blog";
+import { addAttorneys } from "../../actions/attorneys";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   // Update mouse position on move
   useEffect(() => {
+
     const handleMouseMove = (event: MouseEvent) => {
       setMousePosition({ x: event.clientX, y: event.clientY });
     };
