@@ -1,47 +1,84 @@
 "use client";
-import { useState } from 'react';
-// import React from 'react';
-import styled from 'styled-components';
-import {emailSend} from '../../../actions/mail';
+import { useState, ChangeEvent, FormEvent } from "react";
+import styled from "styled-components";
+import { emailSend } from "../../../actions/mail";
+
+interface EmailData {
+  to: string;
+  subject: string;
+  text: string;
+}
 
 export default function Form() {
-  const [emailData, setEmailData] = useState({
+  const [emailData, setEmailData] = useState<EmailData>({
     to: "",
     subject: "",
     text: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setEmailData({ ...emailData, [e.target.name]: e.target.value });
   };
 
-  const sendEmail = async (e) => {
+  const sendEmail = async (e: FormEvent) => {
     e.preventDefault();
-
-      console.log(emailData);
-      
-      emailSend(emailData);
-   
+    console.log(emailData);
+    await emailSend(emailData);
   };
   return (
-    <StyledWrapper style={{margin:"auto",width:"40%",height:"350px",marginTop:"80px",marginBottom:"150px"}}>
+    <StyledWrapper
+      style={{
+        margin: "auto",
+        width: "40%",
+        height: "350px",
+        marginTop: "80px",
+        marginBottom: "150px",
+      }}
+    >
       <div className="form-card1">
         <div className="form-card2">
           <form className="form">
             <p className="form-heading">Get In Touch</p>
             <div className="form-field">
-              <input required placeholder="Email" className="input-field" name='to' type="email" onChange={handleChange}/>
+              <input
+                required
+                placeholder="Email"
+                className="input-field"
+                name="to"
+                type="email"
+                onChange={handleChange}
+              />
             </div>
             <div className="form-field">
-              <input required placeholder="Subject" className="input-field" name="subject" type="text" onChange={handleChange} />
+              <input
+                required
+                placeholder="Subject"
+                className="input-field"
+                name="subject"
+                type="text"
+                onChange={handleChange}
+              />
             </div>
             {/* <div className="form-field">
               <input required placeholder="Subject" className="input-field" name='text' type="text" />
             </div> */}
             <div className="form-field">
-              <textarea required placeholder="Message" cols={30} rows={3} name='text' className="input-field" defaultValue={""} onChange={handleChange}/>
+              <textarea
+                required
+                placeholder="Message"
+                cols={30}
+                rows={3}
+                name="text"
+                className="input-field"
+                defaultValue={""}
+                onChange={handleChange}
+              />
             </div>
-            <button className="sendMessage-btn" onClick={sendEmail}>Send Message</button>
+            <button className="sendMessage-btn" onClick={sendEmail}>
+              Send Message
+            </button>
           </form>
         </div>
       </div>
@@ -121,10 +158,12 @@ const StyledWrapper = styled.div`
     background-image: linear-gradient(163deg, #64ffda 0%, #64ffda 100%);
     border-radius: 22px;
     transition: all 0.3s;
+    box-shadow: 0px 0px 10px rgba(100, 255, 218, 0.5);
   }
 
   .form-card1:hover {
-    box-shadow: 0px 0px 30px 1px rgba(100, 255, 218, 0.3);
+    box-shadow: 0px 0px 25px rgba(100, 255, 218, 0.8),
+      0px 0px 40px rgba(100, 255, 218, 0.5);
   }
 
   .form-card2 {
@@ -135,6 +174,5 @@ const StyledWrapper = styled.div`
   .form-card2:hover {
     transform: scale(0.98);
     border-radius: 20px;
-  }`;
-
-
+  }
+`;
