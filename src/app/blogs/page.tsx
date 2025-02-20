@@ -6,7 +6,7 @@ import { getBlogs } from "../../../actions/blog";
 import Image from "next/image";
 interface BlogData {
   title: string;
-  _id:Number,
+  _id:number,
   excerpt: string;
   date: string;
   content: string;

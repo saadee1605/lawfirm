@@ -6,7 +6,7 @@ import connectDB from "../lib/connectDB";
 // Define an interface for the Blog object
 interface BlogData {
   title: string;
-  _id:Number,
+  _id:number,
   excerpt: string;
   date: string;
   content: string;
