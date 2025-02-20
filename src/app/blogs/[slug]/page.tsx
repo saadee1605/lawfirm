@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogsbyId } from "../../../../actions/blog";
+import Image from "next/image";
 
 // Corrected Type Definition
 type Blog = {
@@ -43,9 +44,11 @@ export default function Page() {
           </p>
           <div className="flex flex-col md:grid grid-cols-2 gap-4 border-t border-b mt-2 mb-2 ">
             {" "}
-            <img
+            <Image
               src={blog.image}
               alt={blog.title}
+              width={500} // Adjust based on your design
+              height={400} // Adjust based on your design
               className="w-full h-[80%] rounded-xl my-4"
             />
             <p className="my-4">{blog.FullContent}</p>

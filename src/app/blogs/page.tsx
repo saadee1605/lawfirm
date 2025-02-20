@@ -3,21 +3,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { getBlogs } from "../../../actions/blog";
+import Image from "next/image";
 
 export default function BlogsPage() {
-
-  
   const [blogs, setBlogs] = useState<any[]>([]);
 
- 
-
-  useEffect( () => {
-    const fetching=async()=>{
-      const value=await getBlogs();
+  useEffect(() => {
+    const fetching = async () => {
+      const value = await getBlogs();
       setBlogs(value);
       console.log(value);
-      
-    }
+    };
     fetching();
   }, []);
 
@@ -37,11 +33,13 @@ export default function BlogsPage() {
 
       {/* Blog List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
-        {blogs.map((post,index) => (
+        {blogs.map((post, index) => (
           <div key={index} className="bg-white p-6 rounded-lg shadow-lg ">
-            <img
+            <Image
               src={post.image}
               alt={post.title}
+              width={400}
+              height={192}
               className="w-full h-48 object-cover rounded-md mb-4"
             />
             <h2 className="text-2xl font-bold mb-2">{post.title}</h2>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import cases from "@/data/cases/cases";
 import { Button } from "@/components/ui/button";
 import { getAttorneysbyId } from "../../../../actions/attorneys";
+import Image from "next/image";
 
 type Attorney = {
   id: number;
@@ -37,9 +38,11 @@ export default function AttorneyPage() {
     <div className="grid grid-cols-1 md:grid-cols-2 mt-28 md:mt-36 p-3 gap-6">
       {/* Attorney Profile */}
       <div className="text-center space-y-3 md:border-r p-2">
-        <img
-          src={data.image} // Ensure it's a correct path if stored in public/
+        <Image
+          src={data.image} // Ensure it's a correct path if stored in /public
           alt={data.name}
+          width={160}
+          height={160}
           className="w-40 m-auto h-40 object-cover object-top rounded-full hover:scale-105 transition-all duration-200"
         />
         <h1 className="text-3xl font-bold mt-4">{data.name}</h1>

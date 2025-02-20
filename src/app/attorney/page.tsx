@@ -2,20 +2,19 @@
 import Link from "next/link"; // ✅ Fix import
 import { useEffect, useState } from "react";
 import { getAttorneys } from "../../../actions/attorneys";
+import Image from "next/image";
 
 export default function AttorneysPage() {
-
   const [attorneys, setAttorneys] = useState<any[]>([]);
 
-  useEffect(()=>{
-    const fetch=async()=>{
-      const val= await getAttorneys();
+  useEffect(() => {
+    const fetch = async () => {
+      const val = await getAttorneys();
       setAttorneys(val);
-    }
+    };
 
     fetch();
-
-  },[])
+  }, []);
 
   return (
     <div className="attorney mt-16 md:mt-28 p-3">
@@ -33,9 +32,11 @@ export default function AttorneysPage() {
         {attorneys.map((attorney) => (
           <Link key={attorney.id} href={`/attorney/${attorney._id}`}>
             <div className="p-4 border rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow">
-              <img
+              <Image
                 src={attorney.image}
                 alt={attorney.name}
+                width={300} // Adjust width accordingly
+                height={160} // Adjust height accordingly
                 className="w-full h-40 object-cover object-top rounded-md"
               />
               <h2 className="text-xl font-bold mt-2">{attorney.name}</h2>
