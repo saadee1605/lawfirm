@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { JSX } from "react/jsx-runtime";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,6 +21,9 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ id, title, icon, description }) => {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    console.log("state changed");
+  }, [open]);
   const selectedArea = practiceAreas.find((area) => area.id === id);
 
   return (
@@ -28,7 +31,6 @@ const Card: React.FC<CardProps> = ({ id, title, icon, description }) => {
       {icon}
       <h3 className="text-xl font-bold mt-4">{title}</h3>
       <p className="text-gray-600 mt-2">{description}</p>
-
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Button onClick={() => setOpen(true)}>Learn More</Button>

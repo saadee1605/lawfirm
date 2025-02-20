@@ -19,7 +19,7 @@ export default function AttorneyPage() {
   const params = useParams();
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug; // Ensure slug is a string
   console.log(slug);
-  
+
   const [data, setAttorneyData] = useState<Attorney | null>(null);
 
   useEffect(() => {
@@ -59,22 +59,20 @@ export default function AttorneyPage() {
           Cases solved by {data.name}
         </p>
         <div className="space-y-4">
-          {cases
-            .filter((c) => c.attorney === data.name) // Show only relevant cases
-            .map((c) => (
-              <div
-                key={c.id}
-                className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
-              >
-                <h2 className="text-xl font-bold">{c.title}</h2>
-                <p className="text-gray-600">Client: {c.client}</p>
-                <p className="text-gray-500 text-sm">Status: {c.status}</p>
-                <p className="text-sm text-gray-700">{c.description}</p>
-                <p className="text-sm font-semibold mt-2">
-                  Verdict: {c.verdict} | Date: {c.date}
-                </p>
-              </div>
-            ))}
+          {cases.map((c) => (
+            <div
+              key={c.id}
+              className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+            >
+              <h2 className="text-xl font-bold">{c.title}</h2>
+              <p className="text-gray-600">Client: {c.client}</p>
+              <p className="text-gray-500 text-sm">Status: {c.status}</p>
+              <p className="text-sm text-gray-700">{c.description}</p>
+              <p className="text-sm font-semibold mt-2">
+                Verdict: {c.verdict} | Date: {c.date}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
