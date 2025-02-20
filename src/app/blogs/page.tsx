@@ -5,16 +5,7 @@ import { useEffect, useState } from "react";
 import { getBlogs } from "../../../actions/blog";
 
 export default function BlogsPage() {
-  type Blog = {
-    titlle: string;
-    excerpt: string;
-    date: string;
-    content: string;
-    category: string;
-    image: string;
-    FullContent: string;
-    tags: string[];
-  }
+
   
   const [blogs, setBlogs] = useState<any[]>([]);
 
