@@ -10,7 +10,7 @@ interface Attorney {
   experience: string;
   image: string;
   bio: string;
-  [key: string]: any; // Allows additional fields
+  [key: string]: string | number | boolean | null;
 }
 export default function AttorneysPage() {
   const [attorneys, setAttorneys] = useState<Attorney[]>([]);
