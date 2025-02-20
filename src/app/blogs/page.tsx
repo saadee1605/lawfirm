@@ -4,9 +4,18 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { getBlogs } from "../../../actions/blog";
 import Image from "next/image";
-
+interface BlogData {
+  title: string;
+  excerpt: string;
+  date: string;
+  content: string;
+  category: string;
+  image: string;
+  FullContent: string;
+  tags: string[];
+}
 export default function BlogsPage() {
-  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<BlogData[]>([]);
 
   useEffect(() => {
     const fetching = async () => {
@@ -46,9 +55,9 @@ export default function BlogsPage() {
             <p className="text-gray-600 mb-4">{post.excerpt}</p>
             <div className="flex justify-between items-center">
               <p className="text-sm text-gray-500">
-                {post.author} • {post.date}
+                {post.excerpt} • {post.date}
               </p>
-              <Link href={`/blogs/${post._id}`} passHref>
+              <Link href={`/blogs/${post.title}`} passHref>
                 <Button>Read More</Button>
               </Link>
             </div>

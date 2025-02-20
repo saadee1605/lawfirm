@@ -3,9 +3,17 @@ import Link from "next/link"; // ✅ Fix import
 import { useEffect, useState } from "react";
 import { getAttorneys } from "../../../actions/attorneys";
 import Image from "next/image";
-
+interface Attorney {
+  id: number;
+  name: string;
+  specialty: string;
+  experience: string;
+  image: string;
+  bio: string;
+  [key: string]: any; // Allows additional fields
+}
 export default function AttorneysPage() {
-  const [attorneys, setAttorneys] = useState<any[]>([]);
+  const [attorneys, setAttorneys] = useState<Attorney[]>([]);
 
   useEffect(() => {
     const fetch = async () => {
