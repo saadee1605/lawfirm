@@ -33,7 +33,7 @@ export default function AttorneysPage() {
           <Link key={attorney.id} href={`/attorney/${attorney._id}`}>
             <div className="p-4 border rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow">
               <Image
-                src={attorney.image}
+                src={`/${attorney.image}`}
                 alt={attorney.name}
                 width={300} // Adjust width accordingly
                 height={160} // Adjust height accordingly
