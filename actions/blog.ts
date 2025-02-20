@@ -1,42 +1,43 @@
 "use server";
+
 import Blog from "../models/Blog";
 import connectDB from "../lib/connectDB";
 
-
-export async function createBlog(param) 
-{
-    await connectDB();
-
-    const exist = await Blog.findOne({"title": param.title});
-    if(exist)
-    {
-        throw new Error("Blog already exist");
-    }else{
-
-   const ins = await Blog.create({"title": param.title, "excerpt": param.excerpt, "date": param.date, "content": param.content, "category": param.category, "image": param.image, "FullContent": param.FullContent, "tags": param.tags});
-    
-    if(ins)
-    {
-        return JSON.parse(JSON.stringify(ins));
-    }
-
-    }
+// Define an interface for the Blog object
+interface BlogData {
+  title: string;
+  excerpt: string;
+  date: string;
+  content: string;
+  category: string;
+  image: string;
+  FullContent: string;
+  tags: string[];
 }
-export async function getBlogs()
-{
-    await connectDB();
-    const blogs = await Blog.find();
-    if(blogs)
-    {
-        return JSON.parse(JSON.stringify(blogs));
-    }
+
+// Function to create a new blog
+export async function createBlog(param: BlogData): Promise<BlogData> {
+  await connectDB();
+
+  const exist = await Blog.findOne({ title: param.title });
+  if (exist) {
+    throw new Error("Blog already exists");
+  }
+
+  const ins = await Blog.create(param);
+  return JSON.parse(JSON.stringify(ins));
 }
-export async function getBlogsbyId(id)
-{
-    await connectDB();
-    const blog = await Blog.findById(id);
-    if(blog)
-    {
-        return JSON.parse(JSON.stringify(blog));
-    }
+
+// Function to get all blogs
+export async function getBlogs(): Promise<BlogData[]> {
+  await connectDB();
+  const blogs = await Blog.find();
+  return JSON.parse(JSON.stringify(blogs));
+}
+
+// Function to get a blog by ID
+export async function getBlogsbyId(id: string): Promise<BlogData | null> {
+  await connectDB();
+  const blog = await Blog.findById(id);
+  return blog ? JSON.parse(JSON.stringify(blog)) : null;
 }

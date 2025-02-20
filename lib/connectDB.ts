@@ -4,15 +4,16 @@ import mongoose from "mongoose";
 import { Mongoose } from "mongoose";
 
 declare global {
-  var mongoose: { conn: Mongoose | null; promise: Promise<Mongoose> | null };
+  var mongoose: {
+    conn: Mongoose | null;
+  };
 }
-
 
 const MONGODB_URI = process.env.MONGO_URI;
 
 if (!MONGODB_URI) throw new Error("MONGODB_URI is not defined.");
 
-let cached = global.mongoose || { conn: null, promise: null };
+let cached = global.mongoose;
 
 if (!cached) cached = global.mongoose = { conn: null };
 
@@ -21,6 +22,7 @@ const connectDB = async () => {
   cached.conn = await mongoose
     .connect(MONGODB_URI as string)
     .then((mongoose) => {
+      console.log("MongoDB connected successfully!");
       return mongoose;
     })
     .catch((error) => {
