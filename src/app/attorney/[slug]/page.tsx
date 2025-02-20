@@ -18,7 +18,8 @@ type Attorney = {
 export default function AttorneyPage() {
   const params = useParams();
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug; // Ensure slug is a string
-
+  console.log(slug);
+  
   const [data, setAttorneyData] = useState<Attorney | null>(null);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function AttorneyPage() {
       {/* Attorney Profile */}
       <div className="text-center space-y-3 md:border-r p-2">
         <Image
-          src={data.image} // Ensure it's a correct path if stored in /public
+          src={`/${data.image}`} // Ensure it's a correct path if stored in /public
           alt={data.name}
           width={160}
           height={160}

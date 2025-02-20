@@ -20,7 +20,8 @@ export default function Page() {
   const params = useParams();
   const slug = params?.slug as string;
   const [blog, setBlog] = useState<Blog | null>(null);
-
+  console.log(slug);
+  
   useEffect(() => {
     if (!slug) return;
 

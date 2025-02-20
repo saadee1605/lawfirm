@@ -6,6 +6,7 @@ import { getBlogs } from "../../../actions/blog";
 import Image from "next/image";
 interface BlogData {
   title: string;
+  _id:Number,
   excerpt: string;
   date: string;
   content: string;
@@ -57,7 +58,7 @@ export default function BlogsPage() {
               <p className="text-sm text-gray-500">
                 {post.excerpt} • {post.date}
               </p>
-              <Link href={`/blogs/${post.title}`} passHref>
+              <Link href={`/blogs/${post._id}`} passHref>
                 <Button>Read More</Button>
               </Link>
             </div>
